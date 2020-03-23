@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["add_one","Adds one to the number given. # Examples `use TRPL_14_02_document::add_one; let arg = 5; let answer = add_one(arg); assert_eq!(6, answer);`"]]});
