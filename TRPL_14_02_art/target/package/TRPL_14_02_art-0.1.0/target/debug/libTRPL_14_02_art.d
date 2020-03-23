@@ -1,0 +1,1 @@
+/Users/Rylyn/project/rust/TRPL-Code/TRPL_14_02_art/target/package/TRPL_14_02_art-0.1.0/target/debug/libTRPL_14_02_art.rlib: /Users/Rylyn/project/rust/TRPL-Code/TRPL_14_02_art/target/package/TRPL_14_02_art-0.1.0/src/lib.rs
