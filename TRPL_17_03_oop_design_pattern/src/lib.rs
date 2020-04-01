@@ -1,5 +1,5 @@
 pub struct Post {
-    state: Some(Box<dyn State>),
+    state: Option<Box<dyn State>>,
     content: String,
 }
 
@@ -16,12 +16,18 @@ impl Post {
     }
 
     pub fn content(&self) -> &str {
-        self.content().as_ref().unwrap().content(self)
+        self.state.as_ref().unwrap().content(self)
     }
 
     pub fn request_review(&mut self) {
         if let Some(s) = self.state.take() {
             self.state = Some(s.request_review())
+        }
+    }
+
+    pub fn approve(&mut self) {
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.approve())
         }
     }
 }
@@ -40,7 +46,7 @@ impl State for Draft {
     }
 
     fn approve(self: Box<Self>) -> Box<dyn State> {
-        Self
+        self
     }
 
     fn content<'a>(&self, post: &'a Post) -> &'a str {
@@ -52,7 +58,7 @@ struct PendingReview {}
 
 impl State for PendingReview {
     fn request_review(self: Box<Self>) -> Box<dyn State> {
-        Self
+        self
     }
 
     fn approve(self: Box<Self>) -> Box<dyn State> {
